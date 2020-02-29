@@ -14,6 +14,7 @@ class App {
     this.app = express()
 
     // セッション設定
+    // オプションの説明 -> https://www.npmjs.com/package/express-session
     this.app.use(
       session({
         resave: false,
@@ -22,7 +23,7 @@ class App {
       })
     )
 
-    // セッションが必要とのこと
+    // connect-flash はセッション設定が必要
     this.app.use(flash())
 
     // View 設定
