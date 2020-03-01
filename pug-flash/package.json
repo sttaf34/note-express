@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "develop": "ts-node-dev src/bin/www.ts",
-    "eslint": "eslint --ext .ts src/"
+    "eslint": "eslint --ext .ts src/",
+    "watch": "browser-sync start --proxy '127.0.0.1:10300' --files='./**/*'"
   },
   "dependencies": {
     "connect-flash": "^0.1.1",
