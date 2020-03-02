@@ -17,4 +17,10 @@ router.post("/", (request: Request, response: Response) => {
   response.redirect("/")
 })
 
+// response.render でなく response.send だと、
+// browser-sync が動いてはいるけど、ブラウザの方は更新がされないっぽい
+router.get("/test", (request: Request, response: Response) => {
+  response.send("ABC")
+})
+
 export default router
