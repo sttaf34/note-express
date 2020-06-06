@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express"
 import { diskStorage, DiskStorageOptions, StorageEngine } from "multer"
 import * as multer from "multer"
+import * as dayjs from "dayjs"
 
 const router = Router()
 
@@ -10,9 +11,11 @@ const configuredStorage = (): StorageEngine => {
     // プロジェクトルートから見たパス
     destination: "./upload",
 
-    // アップロードされたファイル名をそのまま使っている、同じ名前だと上書きされる
+    // アップロードされたファイル名をそのまま使う場合、同じ名前だと上書きされる
     filename: (request, file, callback) => {
-      callback(null, file.originalname)
+      // 上書きにならないように、現在時刻を付与してみる
+      const now = dayjs().format("YYYYMMDDHHmmss")
+      callback(null, `${now}_${file.originalname}`)
     },
   }
   const storage = diskStorage(options)
@@ -37,5 +40,16 @@ router.post(
 router.get("/result", (request: Request, response: Response) => {
   response.render("result")
 })
+
+// React からファイルアップロードする用のエンドポイント
+router.post(
+  "/upload",
+  multer({ storage: configuredStorage() }).single("file"),
+  (request: Request, response: Response) => {
+    response.setHeader("Access-Control-Allow-Origin", "*")
+    response.status(200)
+    response.json("")
+  }
+)
 
 export default router
