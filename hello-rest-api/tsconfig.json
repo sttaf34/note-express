@@ -4,9 +4,9 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./build/",
-    "strictNullChecks": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
   },
-  "strict": true,
   "include": ["src/**/*.ts"],
   "exclude": [
     "node_modules"
