@@ -19,7 +19,7 @@ class App {
       session({
         resave: false,
         saveUninitialized: false,
-        secret: process.env.SESSION_SECRET || "session_secret"
+        secret: process.env.SESSION_SECRET || "session_secret",
       })
     )
 
