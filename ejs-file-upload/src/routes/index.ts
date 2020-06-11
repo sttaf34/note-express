@@ -41,11 +41,21 @@ router.get("/result", (request: Request, response: Response) => {
   response.render("result")
 })
 
+const sleep = async (milliseconds: number): Promise<void> => {
+  return new Promise((resolve: () => void): void => {
+    setTimeout((): void => {
+      resolve()
+    }, milliseconds)
+  })
+}
+
 // React からファイルアップロードする用のエンドポイント
+// フロント側でローディング表示とかをしたいので、わざとスリープしている
 router.post(
   "/upload",
   multer({ storage: configuredStorage() }).single("file"),
-  (request: Request, response: Response) => {
+  async (request: Request, response: Response) => {
+    await sleep(1000)
     response.setHeader("Access-Control-Allow-Origin", "*")
     response.status(200)
     response.json("")
