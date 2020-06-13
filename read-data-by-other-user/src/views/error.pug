@@ -1,0 +1,13 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    title ホーム
+  body
+    if(message)
+      span #{message}
+      br
+
+    span ログインエラーです
+    br
+    a(href="/login") ログインページへ
