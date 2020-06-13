@@ -1,21 +1,17 @@
 module.exports = {
   "env": {
     "es6": true,
-    "browser": true,
     "node": true,
-    "jest": true
   },
   "extends": [
-    "airbnb",
+    "airbnb-base",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier/@typescript-eslint",
-    "prettier/react"
+    "prettier",
+    "prettier/@typescript-eslint",  
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
-    "createDefaultProgram": true
   },
   "plugins": ["@typescript-eslint", "prettier"],
   "settings": {
@@ -24,13 +20,9 @@ module.exports = {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     },
-    "react": {
-      "version": "16.11"
-    }
   },
   "rules": {
     "no-console": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] } ],
     "prettier/prettier": ["error", { "semi": false } ],
 
     // https://stackoverflow.com/questions/59265981/typescript-eslint-missing-file-extension-ts-import-extensions
