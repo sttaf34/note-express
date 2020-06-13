@@ -6,6 +6,7 @@ const getSessionSafety = (
   session: Express.Session | undefined
 ): Express.Session => {
   if (session === undefined) {
+    // app.ts でセッションを使うように設定をしてない場合はエラーになる
     throw new Error("request.session is undefined")
   }
   return session
@@ -48,7 +49,10 @@ router.post("/login", (request, response, next: NextFunction) => {
       if (error) {
         next(error)
       } else if (request.session) {
-        request.session.userId = user.id // セッションに保存
+        // サーバ上のセッション領域にユーザIDを保存
+        // ブラウザ上のクッキーにセッションIDを保存
+        // Chrome DevTools > Application > Strage > Cookies で確認できる
+        request.session.userId = user.id
         response.redirect("/")
       } else {
         response.redirect("/error")
