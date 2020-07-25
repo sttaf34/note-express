@@ -1,41 +1,32 @@
 module.exports = {
-  "env": {
-    "es6": true,
-    "browser": true,
-    "node": true,
-    "jest": true
+  env: {
+    es6: true,
+    browser: true,
+    node: true,
   },
-  "extends": [
-    "airbnb",
+  extends: [
+    "airbnb-base",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    "prettier",
     "prettier/@typescript-eslint",
-    "prettier/react"
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "createDefaultProgram": true
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    project: "./tsconfig.json",
   },
-  "plugins": ["@typescript-eslint", "prettier"],
-  "settings": {
+  plugins: ["@typescript-eslint", "prettier"],
+  settings: {
     "import/resolver": {
-      "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
+      node: {
+        extensions: [".js", ".ts"],
+      },
     },
-    "react": {
-      "version": "16.11"
-    }
   },
-  "rules": {
+  rules: {
     "no-console": "off",
-    "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] } ],
-    "prettier/prettier": ["error", { "semi": false } ],
+    "prettier/prettier": ["error", { semi: false }],
 
     // https://stackoverflow.com/questions/59265981/typescript-eslint-missing-file-extension-ts-import-extensions
-    "import/extensions": [
-      "error", "ignorePackages", { "ts": "never", "tsx": "never" }
-    ]
-  }
+    "import/extensions": ["error", "ignorePackages", { ts: "never" }],
+  },
 }
