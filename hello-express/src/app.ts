@@ -1,8 +1,8 @@
-import { Application, Request, Response } from "express"
+import { Express, Request, Response } from "express"
 import * as express from "express"
 
 class App {
-  public app: Application
+  public app: Express
 
   public constructor() {
     this.app = express()
